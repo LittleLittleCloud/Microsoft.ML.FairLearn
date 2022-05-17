@@ -25,7 +25,7 @@ var groupMetric = context.FairLearn().Metric.BinaryClassificationMetrics(evaluat
 // output
 // | Accuracy | AOC | .. 
 // | 0.33     | 0.4 |
-
+// equal to call context.Binary.Evaluate(evaluateData, "Label");
 groupMetric.OverAll();
 
 // output 
