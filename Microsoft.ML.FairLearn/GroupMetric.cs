@@ -10,20 +10,21 @@ namespace Microsoft.ML.FairLearn
     public interface IGroupMetric
     {
         /// <summary>
-        /// calculate difference between groups.
-        /// see <a href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.MetricFrame.difference">this link</a> for more info
+        /// calculate min/max difference across group. It returns a dictionary which key is metric name
+        /// and value is metric value
         /// </summary>
         /// <returns></returns>
-        float DifferenceBetweenGroups();
+        Dictionary<string, double> DifferenceBetweenGroups();
 
         /// <summary>
-        /// calculate metric all over group.
+        /// calculate metric all over group. It returns a dictionary which key is metric name
+        /// and value is metric value
         /// </summary>
-        float OverAll();
+        Dictionary<string, double> OverAll();
 
         /// <summary>
         /// calculate metric according to group. It returns a dataframe
-        /// which index is each value in a group and column is group name and metric name.
+        /// which index is each value in a group and column is metric name and metric name.
         /// </summary>
         /// <returns></returns>
         DataFrame ByGroup();

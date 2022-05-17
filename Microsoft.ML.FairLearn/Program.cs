@@ -20,21 +20,24 @@ var bestModel = result.Model;
 
 // evaluate a model using fairlearn metric
 var evaluateData = bestModel.Transform(testData);
-var groupMetric = context.FairLearn().Metric.SelectionRate(evaluateData, "Label", "Predicted", "Zone");
+var groupMetric = context.FairLearn().Metric.BinaryClassificationMetrics(evaluateData, "Label", "Predicted", "Zone");
 
-// output 0.3
+// output
+// | Accuracy | AOC | .. 
+// | 0.33     | 0.4 |
+
 groupMetric.OverAll();
 
 // output 
-// | Zone  | SelectionRate  |
-// | 98101 | 0.2            |
-// | 98004 | 0.5            |
-// | 98010 | 0.1            |
+// | Zone  | Accuracy   | AUC | ...
+// | 98101 | 0.2        | 0.3 |
+// | 98004 | 0.5        | 0.9 |
+// | 98010 | 0.1        | 0.7 |
 groupMetric.ByGroup();
 
-
-// output: 0.4
-// this can be used to evaluate unfairness as well.
+// output 
+// | Accuracy   | AUC | ...
+// | 0.4        | 0.6 |
 groupMetric.DifferenceBetweenGroups();
 
 
