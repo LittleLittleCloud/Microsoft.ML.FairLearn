@@ -13,6 +13,11 @@ var context = new MLContext();
 var experiment = context.Auto().CreateExperiment();
 
 // reducing demographic parity using "Zone" as sensitive feature.
+// 0.9: differenceBound
+// 0.5: constraint weight
+// 10: grid limit
+// 100: grid size
+// "Zone": Sensitive feature
 experiment.ReduceDemographicParityUsingGridSearch(0.9, 0.5, 10, 100, "Zone");
 
 var result = await experiment.Run();
