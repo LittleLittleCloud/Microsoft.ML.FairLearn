@@ -20,6 +20,12 @@ var experiment = context.Auto().CreateExperiment();
 // "Zone": Sensitive feature
 experiment.ReduceDemographicParityUsingGridSearch(0.9, 0.5, 10, 100, "Zone");
 
+// or
+var constraint = new DemographicParity(bound: 0.9);
+experiment.SetSensitiveFeature("Zone");
+experiment.SetConstraint(constraint, weight: 0.5);
+experiment.ReducingConstraintUseGridSearch(gridLimit: 10, gridSize: 100);
+
 var result = await experiment.Run();
 var bestModel = result.Model;
 
