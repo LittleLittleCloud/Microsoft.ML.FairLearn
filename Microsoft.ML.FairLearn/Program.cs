@@ -29,7 +29,7 @@ experiment.ReducingConstraintUseGridSearch(gridLimit: 10, gridSize: 100);
 var result = await experiment.Run();
 var bestModel = result.Model;
 
-// evaluate a model using fairlearn metric
+// access a model using fairlearn metric
 var evaluateData = bestModel.Transform(testData);
 var groupMetric = context.FairLearn().Metric.BinaryClassificationMetrics(evaluateData, "Label", "Predicted", "Zone");
 
