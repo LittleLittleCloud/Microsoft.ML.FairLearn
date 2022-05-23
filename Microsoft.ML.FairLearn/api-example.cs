@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 using Microsoft.ML;
 using Microsoft.ML.AutoML;
 using Microsoft.ML.FairLearn;
@@ -29,7 +29,7 @@ experiment.ReducingConstraintUseGridSearch(gridLimit: 10, gridSize: 100);
 var result = await experiment.Run();
 var bestModel = result.Model;
 
-// access a model using fairlearn metric
+// evaluate a model using fairlearn metric
 var evaluateData = bestModel.Transform(testData);
 var groupMetric = context.FairLearn().Metric.BinaryClassificationMetrics(evaluateData, "Label", "Predicted", "Zone");
 
@@ -50,7 +50,3 @@ groupMetric.ByGroup();
 // | Accuracy   | AUC | ...
 // | 0.4        | 0.6 |
 groupMetric.DifferenceBetweenGroups();
-
-
-
-
